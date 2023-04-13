@@ -72,15 +72,12 @@ namespace MediKit
                 return;
             }
 
-            bool nuevo = chkEstado.IsChecked.Value;
-
             //crear la instancia del equipo medico
             Equipos equipo = new Equipos();
             equipo.Producto = producto;
             equipo.Precio = precio;
             equipo.Cantidad = cantidad;
             equipo.Lote = lote;
-            equipo.Nuevo = nuevo;
 
             //guardar los datos en la coleccion
             if (_collection.GuardarEquipo(equipo))
@@ -97,6 +94,39 @@ namespace MediKit
         {
             dgInventario.ItemsSource = null;
             dgInventario.ItemsSource = _collection.equipamiento;
+        }
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            //Se hace la busqueda del equipamiento por Lote
+            int lote = 0;
+            if (int.TryParse(txtLote.Text, out lote) == false)
+            {
+                MessageBox.Show("Debes ingresar un lote");
+                return;
+            }
+
+            Equipos equipo = _collection.BuscarEquipo(lote);
+
+            if (equipo == null)
+            {
+                MessageBox.Show("No se ha encontrado el equipamiento");
+                return;
+            }
+
+            txtProducto.Text = equipo.Producto;
+            txtPrecio.Text = equipo.Precio.ToString();
+            txtCantidad.Text = equipo.Cantidad.ToString();
+        }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dgInventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

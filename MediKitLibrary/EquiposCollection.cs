@@ -17,13 +17,38 @@ namespace MediKitLibrary
             {
                 if (e.Lote == equipo.Lote)
                 {
-                    equipo.Cantidad = equipo.Cantidad+ equipo.Cantidad;
+                    e.Cantidad = e.Cantidad + equipo.Cantidad;
+                }
+            }
+            this.equipamiento.Add(equipo);
+            return true;
+            
+        }
+
+        public Equipos BuscarEquipo(int Lote) 
+        {
+            foreach (Equipos e in equipamiento)
+            {
+                if (e.Lote == Lote)
+                {
+                    return e;
                 }
             }
 
-            this.equipamiento.Add(equipo);
-            return true;
+            return null;
         }
 
+        public bool EliminarEquipo(int Lote)
+        {
+            Equipos equipo = this.BuscarEquipo(Lote);
+
+            if (Lote == 0)
+            {
+                return false;
+            }
+
+            equipo.Cantidad--;
+            return true;
+        }
     }
 }
