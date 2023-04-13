@@ -207,5 +207,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MediKitLibrary\MediKitLibrary.csproj">
+      <Project>{4be6beab-a695-44ca-a820-ea02ca913c7c}</Project>
+      <Name>MediKitLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

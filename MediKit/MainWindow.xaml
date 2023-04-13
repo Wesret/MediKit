@@ -6,12 +6,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediKit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MediKit Inventory" Height="450" Width="800">
+    <Grid Margin="1,0,-1.4,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="162*"/>
             <ColumnDefinition Width="631*"/>
         </Grid.ColumnDefinitions>
+        <Label x:Name="lblProducto" Content="Producto" HorizontalAlignment="Left" Margin="36,67,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblCantidad" Content="Cantidad" HorizontalAlignment="Left" Margin="36,154,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblLote" Content="Nro° Lote" HorizontalAlignment="Left" Margin="36,196,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblPrecio" Content="Precio" HorizontalAlignment="Left" Margin="36,110,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.818,0.945"/>
+        <CheckBox x:Name="chkEstado" Content="¿Es Nuevo?" HorizontalAlignment="Left" Margin="121,243,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="93" RenderTransformOrigin="0.824,0.442"/>
+        <TextBox x:Name="txtProducto" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="152,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_1"/>
+        <TextBox x:Name="txtPrecio" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="152,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtCantidad" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="152,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtLote" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="152,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Left" Margin="87,289,0,0" VerticalAlignment="Top" Width="75" Click="btnAgregar_Click"/>
+        <Button x:Name="btnEliminar" Content="Eliminar" Grid.Column="1" HorizontalAlignment="Left" Margin="102.6,289,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnModificar" Content="Modificar" Grid.Column="1" HorizontalAlignment="Left" Margin="9.6,289,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnBuscar" Content="Buscar" Grid.Column="1" HorizontalAlignment="Left" Margin="134.6,136,0,0" VerticalAlignment="Top" Width="75"/>
+        <DataGrid x:Name="dgInventario" Grid.Column="1" HorizontalAlignment="Left" Height="175" Margin="253.6,67,0,0" VerticalAlignment="Top" Width="367" IsReadOnly="True"/>
 
     </Grid>
 </mah:MetroWindow>
