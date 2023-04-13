@@ -12,14 +12,6 @@ namespace MediKitLibrary
         private int _precio;
         private int _cantidad;
         private int _lote;
-        private bool _nuevo;
-
-        public bool Nuevo
-        {
-            get { return _nuevo; }
-            set { _nuevo = value; }
-        }
-
 
         public int Lote
         {
