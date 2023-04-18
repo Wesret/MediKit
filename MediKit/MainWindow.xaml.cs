@@ -98,35 +98,108 @@ namespace MediKit
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
-            //Se hace la busqueda del equipamiento por Lote
-            int lote = 0;
-            if (int.TryParse(txtLote.Text, out lote) == false)
+            //Se hace la busqueda del equipamiento por Producto
+            string producto = txtProducto.Text;
+
+            if(producto.Trim() == "")
             {
-                MessageBox.Show("Debes ingresar un lote");
+                MessageBox.Show("Debes ingresar un producto");
                 return;
             }
 
-            Equipos equipo = _collection.BuscarEquipo(lote);
+            Equipos equipo = _collection.BuscarEquipo(producto);
 
-            if (equipo == null)
+            if(equipo == null)
             {
-                MessageBox.Show("No se ha encontrado el equipamiento");
+                MessageBox.Show("No se ha encontrado el producto");
                 return;
             }
 
-            txtProducto.Text = equipo.Producto;
             txtPrecio.Text = equipo.Precio.ToString();
             txtCantidad.Text = equipo.Cantidad.ToString();
+            txtLote.Text = equipo.Lote.ToString();
+
+            
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
+            string producto = txtProducto.Text;
+
+            if (producto.Trim() == "")
+            {
+                MessageBox.Show("Debes ingresar un producto");
+                return;
+            }
+
+            if (_collection.EliminarEquipo(producto))
+            {
+                MessageBox.Show("Eliminado Correctamente");
+                CargarGrilla();
+            }
+            else
+            {
+                MessageBox.Show("No se ha encontrado el producto");
+            }
 
         }
 
         private void dgInventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void btnModificar_Click(object sender, RoutedEventArgs e)
+        {
+            //recopilar los datos agregados
+            string producto = txtProducto.Text;
+            int precio = 0;
+
+            if (int.TryParse(txtPrecio.Text, out precio) == false)
+            {
+                MessageBox.Show("Ingrese solo numeros porfavor", "ERROR");
+                return;
+            }
+
+            int cantidad = 0;
+            if (int.TryParse(txtCantidad.Text, out cantidad) == false)
+            {
+                MessageBox.Show("Ingrese solo numeros porfavor", "ERROR");
+                return;
+            }
+
+            int lote = 0;
+            if (int.TryParse(txtLote.Text, out lote) == false)
+            {
+                MessageBox.Show("Ingrese solo numeros porfavor", "ERROR");
+                return;
+            }
+
+            try
+            {
+                //crear la instancia del equipo medico
+                Equipos equipo = _collection.BuscarEquipo(producto);
+
+                if(equipo == null)
+                {
+                    MessageBox.Show("No se ha encontrado el equipo");
+                    return;
+                }
+
+                equipo.Producto = producto;
+                equipo.Precio = precio;
+                equipo.Cantidad = cantidad;
+                equipo.Lote = lote;
+
+                MessageBox.Show("Equipo Modificado correctamente");
+
+                //mostrar equipos en la grilla
+                CargarGrilla();
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -25,11 +25,11 @@ namespace MediKitLibrary
             
         }
 
-        public Equipos BuscarEquipo(int Lote) 
+        public Equipos BuscarEquipo(String Producto) 
         {
             foreach (Equipos e in equipamiento)
             {
-                if (e.Lote == Lote)
+                if (e.Producto == Producto)
                 {
                     return e;
                 }
@@ -38,16 +38,16 @@ namespace MediKitLibrary
             return null;
         }
 
-        public bool EliminarEquipo(int Lote)
+        public bool EliminarEquipo(String Producto)
         {
-            Equipos equipo = this.BuscarEquipo(Lote);
+            Equipos equipo = this.BuscarEquipo(Producto);
 
-            if (Lote == 0)
+            if (Producto == null)
             {
                 return false;
             }
 
-            equipo.Cantidad--;
+            this.equipamiento.Remove(equipo);
             return true;
         }
     }
