@@ -22,7 +22,7 @@
         <TextBox x:Name="txtLote" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="152,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Left" Margin="87,289,0,0" VerticalAlignment="Top" Width="75" Click="btnAgregar_Click"/>
         <Button x:Name="btnEliminar" Content="Eliminar" Grid.Column="1" HorizontalAlignment="Left" Margin="102.6,289,0,0" VerticalAlignment="Top" Width="75" Click="btnEliminar_Click"/>
-        <Button x:Name="btnModificar" Content="Modificar" Grid.Column="1" HorizontalAlignment="Left" Margin="9.6,289,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnModificar" Content="Modificar" Grid.Column="1" HorizontalAlignment="Left" Margin="9.6,289,0,0" VerticalAlignment="Top" Width="75" Click="btnModificar_Click"/>
         <Button x:Name="btnBuscar" Content="Buscar" Grid.Column="1" HorizontalAlignment="Left" Margin="134.6,136,0,0" VerticalAlignment="Top" Width="75" Click="btnBuscar_Click"/>
         <DataGrid x:Name="dgInventario" Grid.Column="1" HorizontalAlignment="Left" Height="175" Margin="253.6,67,0,0" VerticalAlignment="Top" Width="367" IsReadOnly="True" SelectionChanged="dgInventario_SelectionChanged"/>
 
