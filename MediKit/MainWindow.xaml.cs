@@ -201,5 +201,11 @@ namespace MediKit
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnListar_Click(object sender, RoutedEventArgs e)
+        {
+            ListadoEquipos inventario = new ListadoEquipos(this._collection);
+            inventario.Show();
+        }
     }
 }

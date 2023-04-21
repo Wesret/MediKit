@@ -1,0 +1,16 @@
+﻿<Mah:MetroWindow  xmlns:Mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="MediKit.ListadoEquipos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MediKit"
+        mc:Ignorable="d"
+        Title="Inventario de Equipos" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="dgEquipos" HorizontalAlignment="Left" Height="252" Margin="66,80,0,0" VerticalAlignment="Top" Width="653" SelectionChanged="dgEquipos_SelectionChanged"/>
+        <Label x:Name="lblProducto" Content="Producto&#xD;&#xA;" HorizontalAlignment="Left" Margin="66,49,0,0" VerticalAlignment="Top" Height="26" Width="65"/>
+        <TextBox x:Name="txtProducto" HorizontalAlignment="Left" Height="23" Margin="131,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtProducto_TextChanged"/>
+
+    </Grid>
+</Mah:MetroWindow>
