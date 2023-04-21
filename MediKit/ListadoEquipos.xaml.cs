@@ -11,8 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ControlzEx.Theming;
 using MahApps.Metro.Controls;
 using MediKitLibrary;
+using static MediKitLibrary.Equipos;
 
 namespace MediKit
 {
@@ -30,10 +32,19 @@ namespace MediKit
             set { _collection = value; }
         }
 
+        private void Windows_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
 
         public ListadoEquipos()
         {
             InitializeComponent();
+
+            ThemeManager.Current.ChangeTheme(this, "Light.Purple");
+
         }
 
         private void dgEquipos_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -50,7 +61,43 @@ namespace MediKit
         {
             this.Collection = collection;
             InitializeComponent();
+
+            ThemeManager.Current.ChangeTheme(this, "Light.Purple");
             dgEquipos.ItemsSource = this.Collection.equipamiento;
+
+            cboMarca.ItemsSource = Enum.GetValues(typeof(Marcas));
+        }
+
+        private void txtProducto_KeyUp(object sender, KeyEventArgs e)
+        {
+            string producto = txtProducto.Text;
+
+            List<Equipos> equipos = this.Collection.BuscarProducto(producto);
+
+            dgEquipos.ItemsSource = null;
+            dgEquipos.ItemsSource = equipos;
+
+        }
+
+        private void btnFiltrar_Click(object sender, RoutedEventArgs e)
+        {
+            Marcas marca = (Marcas)cboMarca.SelectedIndex;
+
+            List<Equipos> equipos = this.Collection.BuscarPorMarca(marca);
+
+            dgEquipos.ItemsSource = null;
+            dgEquipos.ItemsSource = equipos;
+        }
+
+        private void btnRefrescar_Click(object sender, RoutedEventArgs e)
+        {
+            dgEquipos.ItemsSource = null;
+            dgEquipos.ItemsSource = this.Collection.equipamiento;
+        }
+
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

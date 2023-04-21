@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MediKitLibrary.Equipos;
 
 namespace MediKitLibrary
 {
@@ -50,5 +51,24 @@ namespace MediKitLibrary
             this.equipamiento.Remove(equipo);
             return true;
         }
+
+        public List<Equipos> BuscarProducto (string producto)
+        {
+            List<Equipos> equipos = (from e in this.equipamiento
+                                     where e.Producto.ToLower().Contains(producto) || e.Producto.ToUpper().Contains(producto)
+                                     select e).ToList();
+
+            return equipos;
+        }
+
+        public List<Equipos> BuscarPorMarca(Marcas marca)
+        {
+            List<Equipos> equipos = (from e in this.equipamiento
+                                     where e.Marca == marca
+                                     select e).ToList();
+
+            return equipos;
+        }
+
     }
 }

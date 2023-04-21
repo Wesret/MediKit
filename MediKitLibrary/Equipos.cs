@@ -8,15 +8,27 @@ namespace MediKitLibrary
 {
     public class Equipos
     {
+        public enum Marcas { Medtronic, Fresenius, Abbott, Stryker, QuestDiagnostics};
+
+
         private string _producto;
+        private Marcas _marca;
         private int _precio;
         private int _cantidad;
         private int _lote;
+
 
         public int Lote
         {
             get { return _lote; }
             set { _lote = value; }
+        }
+
+
+        public Marcas Marca
+        {
+            get { return _marca; }
+            set { _marca = value; }
         }
 
 
