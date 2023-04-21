@@ -5,13 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediKit"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
+        Title="MediKit" Height="450" Width="800">
     <Grid>
-        <Label x:Name="lblUsuario" Content="Usuario" HorizontalAlignment="Left" Margin="156,106,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtUsuario" HorizontalAlignment="Left" Height="23" Margin="156,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="358"/>
-        <Label x:Name="lblPassword" Content="Contraseña" HorizontalAlignment="Left" Margin="156,179,0,0" VerticalAlignment="Top"/>
-        <PasswordBox x:Name="txtContrasena" HorizontalAlignment="Left" Margin="156,220,0,0" VerticalAlignment="Top" Width="358"/>
-        <Button x:Name="btnIngresar" Content="Ingresar" HorizontalAlignment="Left" Margin="296,293,0,0" VerticalAlignment="Top" Width="75" Click="btnIngresar_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblUsuario" Content="Usuario" HorizontalAlignment="Left" Margin="196,106,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.206,0.523"/>
+        <TextBox x:Name="txtUsuario" HorizontalAlignment="Left" Height="23" Margin="196,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="358"/>
+        <Label x:Name="lblPassword" Content="Contraseña" HorizontalAlignment="Left" Margin="196,177,0,0" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="txtContrasena" HorizontalAlignment="Left" Margin="196,208,0,0" VerticalAlignment="Top" Width="358"/>
+        <Button x:Name="btnIngresar" Content="Ingresar" HorizontalAlignment="Left" Margin="331,272,0,0" VerticalAlignment="Top" Width="75" Click="btnIngresar_Click"/>
+        <Image Source="C:\Users\001300655\Source\Repos\Wesret\MediKit\MediKit\imagenes\medikit.png" HorizontalAlignment="Left" Height="71" Margin="251,22,0,0" VerticalAlignment="Top" Width="262"/>
 
     </Grid>
 </Window>

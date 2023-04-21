@@ -85,15 +85,7 @@ namespace MediKit
                 MessageBox.Show("Equipo Guardado Correctamente");
             }
 
-            //mostrar equipos en la grilla
-            CargarGrilla();
 
-        }
-
-        private void CargarGrilla()
-        {
-            dgInventario.ItemsSource = null;
-            dgInventario.ItemsSource = _collection.equipamiento;
         }
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
@@ -135,7 +127,6 @@ namespace MediKit
             if (_collection.EliminarEquipo(producto))
             {
                 MessageBox.Show("Eliminado Correctamente");
-                CargarGrilla();
             }
             else
             {
@@ -193,8 +184,7 @@ namespace MediKit
 
                 MessageBox.Show("Equipo Modificado correctamente");
 
-                //mostrar equipos en la grilla
-                CargarGrilla();
+
             }
             catch(ArgumentException ex)
             {
