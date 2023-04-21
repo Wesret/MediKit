@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ControlzEx.Theming;
+using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,12 +19,16 @@ namespace MediKit
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Login : MetroWindow
     {
         public Login()
         {
             InitializeComponent();
+
+            ThemeManager.Current.ChangeTheme(this, "Light.Purple");
+
         }
+
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -30,9 +36,26 @@ namespace MediKit
 
         private void btnIngresar_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow pantalla = new MainWindow();
-            pantalla.Show();
+            Menu Menu = new Menu();
+            Menu.Show();
             this.Close();
         }
+
+        private void Windows_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
     }
 }

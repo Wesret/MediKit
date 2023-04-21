@@ -6,11 +6,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediKit"
         mc:Ignorable="d"
-        Title="Inventario de Equipos" Height="450" Width="800">
-    <Grid>
-        <DataGrid x:Name="dgEquipos" HorizontalAlignment="Left" Height="252" Margin="66,80,0,0" VerticalAlignment="Top" Width="653" SelectionChanged="dgEquipos_SelectionChanged"/>
-        <Label x:Name="lblProducto" Content="Producto&#xD;&#xA;" HorizontalAlignment="Left" Margin="66,49,0,0" VerticalAlignment="Top" Height="26" Width="65"/>
-        <TextBox x:Name="txtProducto" HorizontalAlignment="Left" Height="23" Margin="131,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtProducto_TextChanged"/>
+        Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Windows_MouseDown">
 
+
+    <Grid>
+
+        <Border CornerRadius="50">
+            <Border.Background>
+                <ImageBrush ImageSource="C:\Users\001300655\Source\Repos\Wesret\MediKit\MediKit\imagenes\Medical_background.jpg"></ImageBrush>
+            </Border.Background>
+
+            <Border CornerRadius="50"
+                    BorderThickness="1"
+                    Opacity="0.8">
+
+                <Border.BorderBrush>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#462AD8" Offset="0"/>
+                        <GradientStop Color="#DA34AE" Offset="0.75"/>
+                        <GradientStop Color="#8A16C1" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="BlueViolet" Offset="0"/>
+                        <GradientStop Color="#1B1448" Offset="0.75"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+
+            </Border>
+        </Border>
+
+
+        <DataGrid x:Name="dgEquipos" HorizontalAlignment="Left" Height="252" Margin="66,80,0,0" VerticalAlignment="Top" Width="653" SelectionChanged="dgEquipos_SelectionChanged"/>
+        <Label x:Name="lblProducto" Foreground="White" Content="Producto&#xD;&#xA;" HorizontalAlignment="Left" Margin="66,49,0,0" VerticalAlignment="Top" Height="26" Width="65"/>
+        <TextBox x:Name="txtProducto" HorizontalAlignment="Left" Height="23" Margin="131,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtProducto_TextChanged" KeyUp="txtProducto_KeyUp"/>
+        <Label x:Name="lblMarca" Foreground="White" Content="Marca" HorizontalAlignment="Left" Margin="287,49,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboMarca" HorizontalAlignment="Left" Margin="335,49,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnFiltrar" Content="Filtrar" HorizontalAlignment="Left" Margin="514,48,0,0" VerticalAlignment="Top" Width="75" Click="btnFiltrar_Click"/>
+        <Button x:Name="btnRefrescar" Content="Refrescar" HorizontalAlignment="Left" Margin="644,48,0,0" VerticalAlignment="Top" Width="75" Click="btnRefrescar_Click"/>
+        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Margin="685,371,0,0" VerticalAlignment="Top" Width="75" Click="btnSalir_Click"/>
+        <Image Source="C:\Users\001300655\Source\Repos\Wesret\MediKit\MediKit\imagenes\Medikit_logo_colores_horizontal.png" HorizontalAlignment="Left" Height="76" Margin="212,350,0,0" VerticalAlignment="Top" Width="346"/>
     </Grid>
+
 </Mah:MetroWindow>

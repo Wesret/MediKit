@@ -12,23 +12,36 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ControlzEx.Theming;
 using MahApps.Metro.Controls;
 using MediKit;
 using MediKitLibrary;
+using static MediKitLibrary.Equipos;
 
 namespace MediKit
 {
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class GestionEquipos : MetroWindow
     {
 
         private EquiposCollection _collection = new EquiposCollection();
 
-        public MainWindow()
+        public GestionEquipos()
         {
             InitializeComponent();
+            cboMarca.ItemsSource = Enum.GetValues(typeof(Marcas));
+
+            ThemeManager.Current.ChangeTheme(this, "Light.Purple");
+        }
+        public GestionEquipos(EquiposCollection collection)
+        {
+            this._collection = collection;
+            InitializeComponent();
+            cboMarca.ItemsSource = Enum.GetValues(typeof(Marcas));
+
+            ThemeManager.Current.ChangeTheme(this, "Light.Purple");
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -75,6 +88,7 @@ namespace MediKit
             //crear la instancia del equipo medico
             Equipos equipo = new Equipos();
             equipo.Producto = producto;
+            equipo.Marca = (Marcas)cboMarca.SelectedIndex;
             equipo.Precio = precio;
             equipo.Cantidad = cantidad;
             equipo.Lote = lote;
@@ -86,32 +100,6 @@ namespace MediKit
             }
 
 
-        }
-
-        private void btnBuscar_Click(object sender, RoutedEventArgs e)
-        {
-            //Se hace la busqueda del equipamiento por Producto
-            string producto = txtProducto.Text;
-
-            if(producto.Trim() == "")
-            {
-                MessageBox.Show("Debes ingresar un producto");
-                return;
-            }
-
-            Equipos equipo = _collection.BuscarEquipo(producto);
-
-            if(equipo == null)
-            {
-                MessageBox.Show("No se ha encontrado el producto");
-                return;
-            }
-
-            txtPrecio.Text = equipo.Precio.ToString();
-            txtCantidad.Text = equipo.Cantidad.ToString();
-            txtLote.Text = equipo.Lote.ToString();
-
-            
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
@@ -179,6 +167,7 @@ namespace MediKit
 
                 equipo.Producto = producto;
                 equipo.Precio = precio;
+                equipo.Marca = (Marcas)cboMarca.SelectedIndex;
                 equipo.Cantidad = cantidad;
                 equipo.Lote = lote;
 
@@ -192,10 +181,9 @@ namespace MediKit
             }
         }
 
-        private void btnListar_Click(object sender, RoutedEventArgs e)
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
-            ListadoEquipos inventario = new ListadoEquipos(this._collection);
-            inventario.Show();
+            this.Close();
         }
     }
 }
