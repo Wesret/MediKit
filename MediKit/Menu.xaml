@@ -11,18 +11,20 @@
         Height="450" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
+        UseNoneWindowStyle="True"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        MouseDown="Windows_MouseDown">
     
     <Grid>
 
-        <Border CornerRadius="50">
+        <Border CornerRadius="10">
             <Border.Background>
-                <ImageBrush ImageSource="C:\Users\001300655\Source\Repos\Wesret\MediKit\MediKit\imagenes\Medical_background.jpg"></ImageBrush>
+                <ImageBrush ImageSource="/imagenes/Medical_background.jpg"></ImageBrush>
             </Border.Background>
 
-            <Border CornerRadius="50"
+            <Border CornerRadius="10"
                     BorderThickness="1"
                     Opacity="0.8">
 
@@ -41,12 +43,105 @@
                     </LinearGradientBrush>
                 </Border.Background>
 
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30">
+
+                        </RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="5"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Menu"
+                                   Foreground="DarkBlue"
+                                   FontSize="12"
+                                   FontFamily="Montserrat"
+                                   Grid.Column="0"
+                                   VerticalAlignment="Center" 
+                                   Margin="10,0,0,0"/>
+
+                        <Button x:Name="btnMinimize"
+                                BorderThickness="0"
+                                Content="-"
+                                Foreground="White"
+                                FontSize="16"
+                                FontFamily="Montserrat"
+                                Cursor="Hand"
+                                Grid.Column="1"
+                                Click="btnMinimize_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#278BEF"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="18" Height="18"
+                                            CornerRadius="9"
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                        </Button>
+
+                        <Button x:Name="btnClose"
+                                BorderThickness="0"
+                                Content="x"
+                                Foreground="White"
+                                FontSize="12"
+                                FontFamily="Montserrat"
+                                Cursor="Hand"
+                                Grid.Column="2"
+                                Click="btnClose_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#DA34AE"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#C62DAE"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="18" Height="18"
+                                            CornerRadius="9"
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                        </Button>
+
+                    </Grid>
+
+                </Grid>
+
             </Border>
         </Border>
 
         <mah:Tile Title="Gestion Equipos"
                Margin="177,174,450,143"
-               Background="#f87171"
+               Background="#ff0056"
                HorizontalTitleAlignment="Center" Height="Auto" Width="Auto" Click="Tile_Click">
             <iconPacks:PackIconModern Width="40"
                               Height="40"
@@ -54,14 +149,14 @@
         </mah:Tile>
         <mah:Tile Title="Listado Equipos"
                Margin="451,174,176,143"
-               Background="#f87171"
+               Background="#ff0056"
                HorizontalTitleAlignment="Center" Height="Auto" Width="Auto" Click="Tile_Click_1">
             <iconPacks:PackIconModern Width="40"
                               Height="40"
                               Kind="BookList" />
         </mah:Tile>
-        <Image Source="C:\Users\001300655\Source\Repos\Wesret\MediKit\MediKit\imagenes\Medikit_logo_colores_horizontal.png" HorizontalAlignment="Left" Height="86" Margin="229,20,0,0" VerticalAlignment="Top" Width="316"/>
+        <Image Source="/imagenes/Medikit_logo_colores_horizontal.png" HorizontalAlignment="Left" Height="86" Margin="229,20,0,0" VerticalAlignment="Top" Width="316"/>
         <Label Content="Bienvenido/a!" Foreground="White" HorizontalAlignment="Left" Margin="354,123,0,0" VerticalAlignment="Top" Width="87" Height="27"/>
-        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Margin="652,345,0,0" VerticalAlignment="Top" Width="75" Click="btnSalir_Click"/>
+        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Margin="653,379,0,0" VerticalAlignment="Top" Width="75" Click="btnSalir_Click"/>
     </Grid>
 </mah:MetroWindow>

@@ -21,11 +21,12 @@ namespace MediKit
     /// </summary>
     public partial class Login : MetroWindow
     {
+
         public Login()
         {
             InitializeComponent();
 
-            ThemeManager.Current.ChangeTheme(this, "Light.Purple");
+            //ThemeManager.Current.ChangeTheme(this, "Light.Purple");
 
         }
 
@@ -57,5 +58,7 @@ namespace MediKit
             Application.Current.Shutdown();
         }
 
+
     }
+
 }
