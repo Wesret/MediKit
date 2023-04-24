@@ -147,7 +147,6 @@
         <ComboBox x:Name="cboMarca" HorizontalAlignment="Left" Margin="335,49,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnFiltrar" Content="Filtrar" HorizontalAlignment="Left" Margin="514,48,0,0" VerticalAlignment="Top" Width="75" Click="btnFiltrar_Click"/>
         <Button x:Name="btnRefrescar" Content="Refrescar" HorizontalAlignment="Left" Margin="644,48,0,0" VerticalAlignment="Top" Width="75" Click="btnRefrescar_Click"/>
-        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Margin="685,371,0,0" VerticalAlignment="Top" Width="75" Click="btnSalir_Click"/>
         <Image Source="/imagenes/Medikit_logo_colores_horizontal.png"  HorizontalAlignment="Left" Height="76" Margin="212,350,0,0" VerticalAlignment="Top" Width="346"/>
     </Grid>
 

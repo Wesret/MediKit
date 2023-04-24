@@ -29,11 +29,6 @@ namespace MediKit
             InitializeComponent();
         }
 
-        private void btnSalir_Click(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
         private void Tile_Click(object sender, RoutedEventArgs e)
         {
             GestionEquipos gestion = new GestionEquipos(this._collection);
@@ -59,7 +54,7 @@ namespace MediKit
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
     }
 }

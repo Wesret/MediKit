@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <Border CornerRadius="10"
-                BorderThickness="5" Grid.ColumnSpan="2" Margin="0,0,0,0.4">
+                BorderThickness="5" Grid.ColumnSpan="2" Margin="0,0,0,0">
             <Border.Background>
                 <ImageBrush ImageSource="/imagenes/Medical_background.jpg"></ImageBrush>
             </Border.Background>
@@ -146,7 +146,8 @@
                     Orientation="Vertical"
                     Margin="275,35,79.5,0.4">
 
-            <Image Source="/imagenes/Medikit_logo_colores_horizontal.png"/>
+            <Image Source="/imagenes/Medikit_logo_colores_horizontal.png"
+                   Width="245"/>
             <TextBlock Text="Usuario"
                        Foreground="WhiteSmoke"
                        FontSize="12"
