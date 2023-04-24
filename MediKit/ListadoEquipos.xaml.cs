@@ -32,12 +32,6 @@ namespace MediKit
             set { _collection = value; }
         }
 
-        private void Windows_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-                DragMove();
-        }
-
 
         public ListadoEquipos()
         {
@@ -95,11 +89,6 @@ namespace MediKit
             dgEquipos.ItemsSource = this.Collection.equipamiento;
         }
 
-        private void btnSalir_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -113,7 +102,7 @@ namespace MediKit
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
     }
 }
