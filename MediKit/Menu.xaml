@@ -7,6 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:MediKit"
+        xmlns:viewModel="clr-namespace:MediKit.ViewModels"
         mc:Ignorable="d"
         Height="450" Width="800"
         WindowStyle="None"
@@ -16,6 +17,10 @@
         Background="Transparent"
         AllowsTransparency="True"
         MouseDown="Windows_MouseDown">
+
+    <Window.DataContext>
+        <viewModel:MenuViewModel/>
+    </Window.DataContext>
     
     <Grid>
 
@@ -156,6 +161,6 @@
                               Kind="BookList" />
         </mah:Tile>
         <Image Source="/imagenes/Medikit_logo_colores_horizontal.png" HorizontalAlignment="Left" Height="86" Margin="229,20,0,0" VerticalAlignment="Top" Width="316"/>
-        <Label Content="Bienvenido/a!" Foreground="White" HorizontalAlignment="Left" Margin="354,123,0,0" VerticalAlignment="Top" Width="87" Height="27"/>
-        </Grid>
+        <TextBlock Text="{Binding CurrentUserAccount.DisplayName}" Foreground="White"  FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,110,0,0"/>
+    </Grid>
 </mah:MetroWindow>
