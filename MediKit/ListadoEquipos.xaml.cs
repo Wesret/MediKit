@@ -86,6 +86,7 @@ namespace MediKit
         private void btnRefrescar_Click(object sender, RoutedEventArgs e)
         {
             dgEquipos.ItemsSource = null;
+            txtProducto.Text = null;
             cboMarca.SelectedItem = null;
             dgEquipos.ItemsSource = this.Collection.equipamiento;
         }

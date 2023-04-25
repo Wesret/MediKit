@@ -23,7 +23,6 @@ namespace MediKit
                 {
                     var main = new Menu();
                     main.Show();
-                    login.Close();
                 }
             };
         }
