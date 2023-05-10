@@ -7,7 +7,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:MediKit"
-        xmlns:viewModel="clr-namespace:MediKit.ViewModels"
         mc:Ignorable="d"
         Height="450" Width="800"
         WindowStyle="None"
@@ -18,10 +17,6 @@
         AllowsTransparency="True"
         MouseDown="Windows_MouseDown">
 
-    <Window.DataContext>
-        <viewModel:MenuViewModel/>
-    </Window.DataContext>
-    
     <Grid>
 
         <Border CornerRadius="10">
@@ -150,7 +145,7 @@
                HorizontalTitleAlignment="Center" Height="Auto" Width="Auto" Click="Tile_Click">
             <iconPacks:PackIconModern Width="40"
                               Height="40"
-                              Kind="MedicalPill" />
+                              Kind="MedicalPill"/>
         </mah:Tile>
         <mah:Tile Title="Listado Equipos"
                Margin="451,174,176,143"
@@ -161,6 +156,5 @@
                               Kind="BookList" />
         </mah:Tile>
         <Image Source="/imagenes/Medikit_logo_colores_horizontal.png" HorizontalAlignment="Left" Height="86" Margin="229,20,0,0" VerticalAlignment="Top" Width="316"/>
-        <TextBlock Text="{Binding CurrentUserAccount.DisplayName}" Foreground="White"  FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,110,0,0"/>
-    </Grid>
+        </Grid>
 </mah:MetroWindow>
