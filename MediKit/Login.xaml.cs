@@ -38,8 +38,8 @@ namespace MediKit
         private void btnIngresar_Click(object sender, RoutedEventArgs e)
         {
             Menu Menu = new Menu();
-            Menu.Show();
             this.Close();
+            Menu.Show();
         }
 
         private void Windows_MouseDown(object sender, MouseButtonEventArgs e)
