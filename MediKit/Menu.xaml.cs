@@ -29,10 +29,6 @@ namespace MediKit
             InitializeComponent();
         }
 
-        private void btnSalir_Click(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
 
         private void Tile_Click(object sender, RoutedEventArgs e)
         {
@@ -44,6 +40,22 @@ namespace MediKit
         {
             ListadoEquipos listado = new ListadoEquipos(this._collection);
             listado.Show();
+        }
+
+        private void Windows_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

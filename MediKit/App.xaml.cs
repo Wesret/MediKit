@@ -13,5 +13,18 @@ namespace MediKit
     /// </summary>
     public partial class App : Application
     {
+        protected void ApplicationStart(object sender, StartupEventArgs e)
+        {
+            var login = new Login();
+            login.Show();
+            login.IsVisibleChanged += (s, ev) =>
+            {
+                if (login.IsVisible == false && login.IsLoaded)
+                {
+                    var main = new Menu();
+                    main.Show();
+                }
+            };
+        }
     }
 }

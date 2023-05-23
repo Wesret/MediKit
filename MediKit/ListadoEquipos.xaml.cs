@@ -32,18 +32,12 @@ namespace MediKit
             set { _collection = value; }
         }
 
-        private void Windows_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-                DragMove();
-        }
-
 
         public ListadoEquipos()
         {
             InitializeComponent();
 
-            ThemeManager.Current.ChangeTheme(this, "Light.Purple");
+           // ThemeManager.Current.ChangeTheme(this, "Light.Purple");
 
         }
 
@@ -92,10 +86,23 @@ namespace MediKit
         private void btnRefrescar_Click(object sender, RoutedEventArgs e)
         {
             dgEquipos.ItemsSource = null;
+            txtProducto.Text = null;
+            cboMarca.SelectedItem = null;
             dgEquipos.ItemsSource = this.Collection.equipamiento;
         }
 
-        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
