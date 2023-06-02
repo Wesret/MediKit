@@ -413,6 +413,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\GestionEquipos.datasource" />
+    <None Include="Properties\DataSources\Login.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -422,6 +424,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MediKit.BC\MediKit.BC.csproj">
+      <Project>{FEF7862F-748D-40E1-A664-88EF490A8319}</Project>
+      <Name>MediKit.BC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MediKit.BD\MediKit.BD.csproj">
+      <Project>{6f203d15-7312-4e44-9896-42a6568037fc}</Project>
+      <Name>MediKit.BD</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MediKitLibrary\MediKitLibrary.csproj">
       <Project>{4be6beab-a695-44ca-a820-ea02ca913c7c}</Project>
       <Name>MediKitLibrary</Name>

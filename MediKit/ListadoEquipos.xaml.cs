@@ -13,8 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ControlzEx.Theming;
 using MahApps.Metro.Controls;
-using MediKitLibrary;
-using static MediKitLibrary.Equipos;
+using MediKit.BC;
 
 namespace MediKit
 {
@@ -24,20 +23,31 @@ namespace MediKit
     public partial class ListadoEquipos : MetroWindow
     {
 
-        private EquiposCollection _collection;
-
-        public EquiposCollection Collection
-        {
-            get { return _collection; }
-            set { _collection = value; }
-        }
-
 
         public ListadoEquipos()
         {
             InitializeComponent();
-
+            CargarEquipos();
+            CargarMarcas();
            // ThemeManager.Current.ChangeTheme(this, "Light.Purple");
+
+        }
+
+        private void CargarEquipos()
+        {
+            Equipos equipo = new Equipos();
+            dgEquipos.ItemsSource = equipo.ReadAll();
+        }
+
+        private void CargarMarcas()
+        {
+            //Se cargan los equipos
+            Marcas marca = new Marcas();
+            cboMarca.ItemsSource = marca.ReadAll();
+
+            cboMarca.DisplayMemberPath = "Nombre";
+            cboMarca.SelectedValuePath = "Id";
+            cboMarca.SelectedIndex = 0;
 
         }
 
@@ -51,44 +61,27 @@ namespace MediKit
 
         }
 
-        public ListadoEquipos(EquiposCollection collection)
-        {
-            this.Collection = collection;
-            InitializeComponent();
-
-            ThemeManager.Current.ChangeTheme(this, "Light.Purple");
-            dgEquipos.ItemsSource = this.Collection.equipamiento;
-
-            cboMarca.ItemsSource = Enum.GetValues(typeof(Marcas));
-        }
 
         private void txtProducto_KeyUp(object sender, KeyEventArgs e)
         {
+            Equipos equipos = new Equipos();
             string producto = txtProducto.Text;
 
-            List<Equipos> equipos = this.Collection.BuscarProducto(producto);
-
-            dgEquipos.ItemsSource = null;
-            dgEquipos.ItemsSource = equipos;
-
+            dgEquipos.ItemsSource = equipos.BuscarProducto(producto);
         }
 
         private void btnFiltrar_Click(object sender, RoutedEventArgs e)
         {
-            Marcas marca = (Marcas)cboMarca.SelectedIndex;
+            Equipos equipos = new Equipos();
+            int marcaId = int.Parse(cboMarca.SelectedValue.ToString());
 
-            List<Equipos> equipos = this.Collection.BuscarPorMarca(marca);
-
-            dgEquipos.ItemsSource = null;
-            dgEquipos.ItemsSource = equipos;
+            dgEquipos.ItemsSource = equipos.BuscarMarca(marcaId);
         }
 
         private void btnRefrescar_Click(object sender, RoutedEventArgs e)
         {
-            dgEquipos.ItemsSource = null;
-            txtProducto.Text = null;
-            cboMarca.SelectedItem = null;
-            dgEquipos.ItemsSource = this.Collection.equipamiento;
+            Equipos equipo = new Equipos();
+            dgEquipos.ItemsSource = equipo.ReadAll();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
