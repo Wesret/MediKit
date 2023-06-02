@@ -22,8 +22,6 @@ namespace MediKit
     public partial class Menu : MetroWindow
     {
 
-        private EquiposCollection _collection = new EquiposCollection();
-
         public Menu()
         {
             InitializeComponent();
@@ -32,14 +30,16 @@ namespace MediKit
 
         private void Tile_Click(object sender, RoutedEventArgs e)
         {
-            GestionEquipos gestion = new GestionEquipos(this._collection);
-            gestion.Show();
+            GestionEquipos gestion = new GestionEquipos();
+            gestion.Owner = this;
+            gestion.ShowDialog();
         }
 
         private void Tile_Click_1(object sender, RoutedEventArgs e)
         {
-            ListadoEquipos listado = new ListadoEquipos(this._collection);
-            listado.Show();
+            ListadoEquipos listado = new ListadoEquipos();
+            listado.Owner = this;
+            listado.ShowDialog();
         }
 
         private void Windows_MouseDown(object sender, MouseButtonEventArgs e)

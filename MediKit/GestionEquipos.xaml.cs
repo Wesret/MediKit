@@ -15,8 +15,7 @@ using System.Windows.Shapes;
 using ControlzEx.Theming;
 using MahApps.Metro.Controls;
 using MediKit;
-using MediKitLibrary;
-using static MediKitLibrary.Equipos;
+using MediKit.BC;
 
 namespace MediKit
 {
@@ -26,31 +25,35 @@ namespace MediKit
     public partial class GestionEquipos : MetroWindow
     {
 
-        private EquiposCollection _collection = new EquiposCollection();
-
         public GestionEquipos()
         {
             InitializeComponent();
-            cboMarca.ItemsSource = Enum.GetValues(typeof(Marcas));
-
-           // ThemeManager.Current.ChangeTheme(this, "Light.Purple");
-        }
-        public GestionEquipos(EquiposCollection collection)
-        {
-            this._collection = collection;
-            InitializeComponent();
-            cboMarca.ItemsSource = Enum.GetValues(typeof(Marcas));
-
-            //ThemeManager.Current.ChangeTheme(this, "Light.Purple");
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+            LimpiarControles();
 
         }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LimpiarControles()
         {
+            //Limpia los controles de texto
+
+            txtProducto.Text = string.Empty;
+            txtPrecio.Text = string.Empty;
+            txtLote.Text = string.Empty;
+            txtCantidad.Text = string.Empty;
+
+            CargarMarcas();
+
+        }
+
+        private void CargarMarcas()
+        {
+            //Se cargan los equipos
+            Marcas marca = new Marcas();
+            cboMarca.ItemsSource = marca.ReadAll();
+
+            cboMarca.DisplayMemberPath = "Nombre";
+            cboMarca.SelectedValuePath = "Id";
+            cboMarca.SelectedIndex = 0;
 
         }
 
@@ -59,44 +62,28 @@ namespace MediKit
 
         }
 
+        
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             //recopilar los datos agregados
-            string producto = txtProducto.Text;
-            int precio = 0;
-
-            if (int.TryParse(txtPrecio.Text, out precio) == false)
+            Equipos equipo = new Equipos()
             {
-                MessageBox.Show("Ingrese solo numeros porfavor", "ERROR");
-                return;
+                Producto = txtProducto.Text,
+                Precio = int.Parse(txtPrecio.Text),
+                MarcaID = (int)cboMarca.SelectedValue,
+                Lote = int.Parse(txtLote.Text),
+                Cantidad = int.Parse(txtCantidad.Text)
+
+            };
+
+            if (equipo.Create())
+            {
+                MessageBox.Show("Equipo ingresado con exito", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                LimpiarControles();
             }
-
-            int cantidad = 0;
-            if (int.TryParse(txtCantidad.Text, out cantidad) == false)
+            else
             {
-                MessageBox.Show("Ingrese solo numeros porfavor", "ERROR");
-                return;
-            }
-
-            int lote = 0;
-            if (int.TryParse(txtLote.Text, out lote) == false)
-            {
-                MessageBox.Show("Ingrese solo numeros porfavor", "ERROR");
-                return;
-            }
-
-            //crear la instancia del equipo medico
-            Equipos equipo = new Equipos();
-            equipo.Producto = producto;
-            equipo.Marca = (Marcas)cboMarca.SelectedIndex;
-            equipo.Precio = precio;
-            equipo.Cantidad = cantidad;
-            equipo.Lote = lote;
-
-            //guardar los datos en la coleccion
-            if (_collection.GuardarEquipo(equipo))
-            {
-                MessageBox.Show("Equipo Guardado Correctamente");
+                MessageBox.Show("No se pudo ingresar el equipo", "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
 
@@ -104,23 +91,20 @@ namespace MediKit
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            string producto = txtProducto.Text;
-
-            if (producto.Trim() == "")
+            Equipos equipo = new Equipos()
             {
-                MessageBox.Show("Debes ingresar un producto");
-                return;
-            }
+                Lote = int.Parse(txtLote.Text)
+            };
 
-            if (_collection.EliminarEquipo(producto))
+            if (equipo.Delete())
             {
-                MessageBox.Show("Eliminado Correctamente");
+                MessageBox.Show("Equipo eliminado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                LimpiarControles();
             }
             else
             {
-                MessageBox.Show("No se ha encontrado el producto");
+                MessageBox.Show("El equipo no pudo ser eliminado", "Atención", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-
         }
 
         private void dgInventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -131,53 +115,24 @@ namespace MediKit
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
             //recopilar los datos agregados
-            string producto = txtProducto.Text;
-            int precio = 0;
-
-            if (int.TryParse(txtPrecio.Text, out precio) == false)
+            Equipos equipo = new Equipos()
             {
-                MessageBox.Show("Ingrese solo numeros porfavor", "ERROR");
-                return;
+                Producto = txtProducto.Text,
+                Precio = int.Parse(txtPrecio.Text),
+                MarcaID = (int)cboMarca.SelectedValue,
+                Lote = int.Parse(txtLote.Text),
+                Cantidad = int.Parse(txtCantidad.Text)
+
+            };
+
+            if (equipo.Update())
+            {
+                MessageBox.Show("Equipo modificado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                LimpiarControles();
             }
-
-            int cantidad = 0;
-            if (int.TryParse(txtCantidad.Text, out cantidad) == false)
+            else
             {
-                MessageBox.Show("Ingrese solo numeros porfavor", "ERROR");
-                return;
-            }
-
-            int lote = 0;
-            if (int.TryParse(txtLote.Text, out lote) == false)
-            {
-                MessageBox.Show("Ingrese solo numeros porfavor", "ERROR");
-                return;
-            }
-
-            try
-            {
-                //crear la instancia del equipo medico
-                Equipos equipo = _collection.BuscarEquipo(producto);
-
-                if(equipo == null)
-                {
-                    MessageBox.Show("No se ha encontrado el equipo");
-                    return;
-                }
-
-                equipo.Producto = producto;
-                equipo.Precio = precio;
-                equipo.Marca = (Marcas)cboMarca.SelectedIndex;
-                equipo.Cantidad = cantidad;
-                equipo.Lote = lote;
-
-                MessageBox.Show("Equipo Modificado correctamente");
-
-
-            }
-            catch(ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("No se pudo modificar el equipo", "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
