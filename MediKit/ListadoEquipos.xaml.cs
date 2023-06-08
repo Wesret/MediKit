@@ -76,12 +76,14 @@ namespace MediKit
             int marcaId = int.Parse(cboMarca.SelectedValue.ToString());
 
             dgEquipos.ItemsSource = equipos.BuscarMarca(marcaId);
+            txtProducto.Text = string.Empty;
         }
 
         private void btnRefrescar_Click(object sender, RoutedEventArgs e)
         {
             Equipos equipo = new Equipos();
             dgEquipos.ItemsSource = equipo.ReadAll();
+            txtProducto.Text = string.Empty;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

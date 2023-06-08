@@ -72,7 +72,7 @@
                                 FontFamily="Montserrat"
                                 Cursor="Hand"
                                 Grid.Column="1"
-                                Click="btnMinimize_Click">
+                                Click="BtnMinimize_Click">
                             <Button.Style>
                                 <Style TargetType="Button">
                                     <Setter Property="Background" Value="#28AEED"/>
@@ -105,7 +105,7 @@
                                 FontFamily="Montserrat"
                                 Cursor="Hand"
                                 Grid.Column="2"
-                                Click="btnClose_Click">
+                                Click="BtnClose_Click">
                             <Button.Style>
                                 <Style TargetType="Button">
                                     <Setter Property="Background" Value="#DA34AE"/>
@@ -147,12 +147,13 @@
         <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="223,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="223,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtLote" HorizontalAlignment="Left" Height="23" Margin="223,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.448,1.693"/>
-        <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Left" Margin="93,330,0,0" VerticalAlignment="Top" Width="75" Click="btnAgregar_Click"/>
-        <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Margin="310,330,0,0" VerticalAlignment="Top" Width="75" Click="btnEliminar_Click"/>
-        <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Margin="197,330,0,0" VerticalAlignment="Top" Width="75" Click="btnModificar_Click"/>
+        <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Left" Margin="93,330,0,0" VerticalAlignment="Top" Width="75" Click="BtnAgregar_Click"/>
+        <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Margin="310,330,0,0" VerticalAlignment="Top" Width="75" Click="BtnEliminar_Click"/>
+        <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Margin="197,330,0,0" VerticalAlignment="Top" Width="75" Click="BtnModificar_Click"/>
         <Image Source="/imagenes/Medikit_logo_colores_horizontal.png" HorizontalAlignment="Left" Height="69" Margin="445,162,0,0" VerticalAlignment="Top" Width="309"/>
         <Label x:Name="lblMarca" Foreground="White" Content="Marca" HorizontalAlignment="Left" Margin="107,120,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cboMarca" HorizontalAlignment="Left" Margin="223,119,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="BtnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="392,87,0,0" VerticalAlignment="Top" Width="75" Click="BtnBuscar_Click"/>
 
     </Grid>
 </mah:MetroWindow>

@@ -29,7 +29,11 @@ namespace MediKit.BC
                     PropertyInfo propInfo = destino.GetType().GetProperty(propiedad.Name);
                     /* Asigna valor destino desde el origen */
                     propInfo.SetValue(destino, propiedad.GetValue(origen, null));
-                }catch {/* Los valores que no se pueden asignar son ignorados */}
+                }catch (Exception ex)
+                {
+                    /* Los valores que no se pueden asignar son ignorados */
+                    System.Diagnostics.Debug.WriteLine($"No se pudo asignar la propiedad {propiedad.Name}: {ex}");
+                }
             }
         }
     }

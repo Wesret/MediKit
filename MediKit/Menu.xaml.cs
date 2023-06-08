@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MediKitLibrary;
+using MediKit.BC;
 
 namespace MediKit
 {
@@ -21,21 +22,21 @@ namespace MediKit
     /// </summary>
     public partial class Menu : MetroWindow
     {
-
-        public Menu()
+        private User user;
+        public Menu(User user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
-
-        private void Tile_Click(object sender, RoutedEventArgs e)
+        private void GestionEquipos(object sender, RoutedEventArgs e)
         {
             GestionEquipos gestion = new GestionEquipos();
             gestion.Owner = this;
             gestion.ShowDialog();
         }
 
-        private void Tile_Click_1(object sender, RoutedEventArgs e)
+        private void ListadoEquipos(object sender, RoutedEventArgs e)
         {
             ListadoEquipos listado = new ListadoEquipos();
             listado.Owner = this;
@@ -56,6 +57,13 @@ namespace MediKit
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void VerPerfil(object sender, RoutedEventArgs e)
+        {
+            Perfil perfil = new Perfil(user);
+            perfil.Owner = this;
+            perfil.ShowDialog();
         }
     }
 }
