@@ -16,7 +16,7 @@ namespace MediKit.BC
         public int Cantidad { get; set; }
         public int Lote { get; set; }
         public int MarcaID { get; set; }
-        public string DescripcionMarca { get => _descripcionMarca;}
+        public string DescripcionMarca { get => _descripcionMarca; }
 
         public Equipos()
         {
@@ -57,18 +57,33 @@ namespace MediKit.BC
 
         public bool Update()
         {
-            BD.MEDIKITDBEntities bbdd = new BD.MEDIKITDBEntities();
-            try
+            using (var dbContext = new BD.MEDIKITDBEntities())
             {
-                BD.Equipos equipo = bbdd.Equipos.First(e => e.Id == Id);
-                CommonBC.Syncronize(this, equipo);
+                try
+                {
+                    var equipo = dbContext.Equipos.FirstOrDefault(a => a.Lote == this.Lote);
 
-                bbdd.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
+                    if (equipo != null)
+                    {
+                        // Actualizar las propiedades del equipo en la base de datos
+                        equipo.Producto = this.Producto;
+                        equipo.MarcaID = this.MarcaID;
+                        equipo.Precio = this.Precio;
+                        equipo.Cantidad = this.Cantidad;
+
+                        dbContext.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false; // El equipo no existe en la base de datos
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Manejar la excepción o registrar el error en algún lugar
+                    return false;
+                }
             }
         }
 
@@ -77,7 +92,7 @@ namespace MediKit.BC
             BD.MEDIKITDBEntities bbdd = new BD.MEDIKITDBEntities();
             try
             {
-                BD.Equipos equipo = bbdd.Equipos.First(e => e.Id == Id);
+                BD.Equipos equipo = bbdd.Equipos.First(e => e.Lote == Lote);
                 bbdd.Equipos.Remove(equipo);
                 bbdd.SaveChanges();
                 return true;
@@ -107,9 +122,9 @@ namespace MediKit.BC
             BD.MEDIKITDBEntities bd = new BD.MEDIKITDBEntities();
             try
             {
-                //se busca por el ID el contenido de la entidad
+                //se busca por el Lote el contenido de la entidad
                 BD.Equipos Equipos =
-                    bd.Equipos.First(e => e.Id.Equals(this.Id));
+                    bd.Equipos.First(e => e.Lote.Equals(this.Lote));
                 CommonBC.Syncronize(Equipos, this);
                 //se agrega la lectura de la propiedad customizada
                 LeerDescripcionEquipo();
@@ -166,7 +181,8 @@ namespace MediKit.BC
                                         Precio = a.Precio,
                                         Cantidad = a.Cantidad,
                                         Lote = a.Lote,
-                                        MarcaID = a.Marcas.Id
+                                        MarcaID = a.Marcas.Id,
+                                        _descripcionMarca = a.Marcas.Nombre
                                     }).ToList();
             return equipo;
         }
@@ -184,9 +200,11 @@ namespace MediKit.BC
                                         Precio = a.Precio,
                                         Cantidad = a.Cantidad,
                                         Lote = a.Lote,
-                                        MarcaID = a.Marcas.Id
+                                        MarcaID = a.Marcas.Id,
+                                        _descripcionMarca = a.Marcas.Nombre
                                     }).ToList();
             return equipo;
         }
+
     }
 }

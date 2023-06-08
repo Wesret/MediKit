@@ -141,9 +141,9 @@
 
 
         <DataGrid x:Name="dgEquipos" HorizontalAlignment="Left" Height="252" Margin="66,80,0,0" VerticalAlignment="Top" Width="653" SelectionChanged="dgEquipos_SelectionChanged"/>
-        <Label x:Name="lblProducto" Foreground="White" Content="Producto&#xD;&#xA;" HorizontalAlignment="Left" Margin="66,49,0,0" VerticalAlignment="Top" Height="26" Width="65"/>
+        <Label x:Name="lblProducto" Foreground="White" Content="Producto:" HorizontalAlignment="Left" Margin="66,49,0,0" VerticalAlignment="Top" Height="26" Width="65"/>
         <TextBox x:Name="txtProducto" HorizontalAlignment="Left" Height="23" Margin="131,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtProducto_TextChanged" KeyUp="txtProducto_KeyUp"/>
-        <Label x:Name="lblMarca" Foreground="White" Content="Marca" HorizontalAlignment="Left" Margin="287,49,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblMarca" Foreground="White" Content="Marca:" HorizontalAlignment="Left" Margin="287,49,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cboMarca" DisplayMemberPath="Nombre" SelectedValuePath="Id" HorizontalAlignment="Left" Margin="335,49,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnFiltrar" Content="Filtrar" HorizontalAlignment="Left" Margin="514,48,0,0" VerticalAlignment="Top" Width="75" Click="btnFiltrar_Click"/>
         <Button x:Name="btnRefrescar" Content="Refrescar" HorizontalAlignment="Left" Margin="644,48,0,0" VerticalAlignment="Top" Width="75" Click="btnRefrescar_Click"/>

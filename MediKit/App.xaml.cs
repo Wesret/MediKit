@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using MediKit.BC;
 
 namespace MediKit
 {
@@ -15,13 +16,14 @@ namespace MediKit
     {
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
+            User user = new User();
             var login = new Login();
             login.Show();
             login.IsVisibleChanged += (s, ev) =>
             {
                 if (login.IsVisible == false && login.IsLoaded)
                 {
-                    var main = new Menu();
+                    var main = new Menu(user);
                     main.Show();
                 }
             };

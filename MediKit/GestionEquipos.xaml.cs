@@ -63,7 +63,7 @@ namespace MediKit
         }
 
         
-        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
             //recopilar los datos agregados
             Equipos equipo = new Equipos()
@@ -88,23 +88,64 @@ namespace MediKit
 
 
         }
+        private void BtnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtLote.Text))
+            {
+                MessageBox.Show("Por favor ingrese el Nro de Lote", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                LimpiarControles();
+            }
+            else
+            {
+                Equipos equipo = new Equipos()
+                {
+                    Lote = int.Parse(txtLote.Text)
+                };
 
-        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+                if (equipo.Read())
+                {
+                    txtProducto.Text = equipo.Producto;
+                    cboMarca.SelectedValue = equipo.MarcaID;
+                    txtPrecio.Text = equipo.Precio.ToString();
+                    txtCantidad.Text = equipo.Cantidad.ToString();
+                    txtLote.Text = equipo.Lote.ToString();
+
+                    MessageBox.Show("Equipo Encontrado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró el equipo", "Atención", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LimpiarControles();
+                }
+            }
+
+            
+        }
+
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             Equipos equipo = new Equipos()
             {
                 Lote = int.Parse(txtLote.Text)
             };
 
-            if (equipo.Delete())
+            if (MessageBox.Show("¿Está seguro/a de eliminar el equipo?",
+                    "Borrar Equipo",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                MessageBox.Show("Equipo eliminado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
-                LimpiarControles();
+                if (equipo.Delete())
+                {
+                    MessageBox.Show("Equipo eliminado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LimpiarControles();
+                }
+                else
+                {
+                    MessageBox.Show("El equipo no pudo ser eliminado", "Atención", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
             }
-            else
-            {
-                MessageBox.Show("El equipo no pudo ser eliminado", "Atención", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
+
         }
 
         private void dgInventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,19 +153,19 @@ namespace MediKit
 
         }
 
-        private void btnModificar_Click(object sender, RoutedEventArgs e)
+        private void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
-            //recopilar los datos agregados
+            // Crear una instancia del objeto Equipos con los datos recopilados
             Equipos equipo = new Equipos()
             {
                 Producto = txtProducto.Text,
-                Precio = int.Parse(txtPrecio.Text),
                 MarcaID = (int)cboMarca.SelectedValue,
-                Lote = int.Parse(txtLote.Text),
-                Cantidad = int.Parse(txtCantidad.Text)
-
+                Precio = int.Parse(txtPrecio.Text),
+                Cantidad = int.Parse(txtCantidad.Text),
+                Lote = int.Parse(txtLote.Text)
             };
 
+            // Actualizar el equipo en la base de datos
             if (equipo.Update())
             {
                 MessageBox.Show("Equipo modificado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -136,7 +177,7 @@ namespace MediKit
             }
         }
 
-        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        private void BtnSalir_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -147,14 +188,15 @@ namespace MediKit
                 DragMove();
         }
 
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
     }
 }
