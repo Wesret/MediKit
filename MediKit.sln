@@ -11,6 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediKit.BD", "MediKit.BD\Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediKit.BC", "MediKit.BC\MediKit.BC.csproj", "{FEF7862F-748D-40E1-A664-88EF490A8319}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediKitWeb", "MediKitWeb\MediKitWeb.csproj", "{EFDF70D5-18AB-4BC2-9767-071A4CFD401C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{763AD408-7016-4D00-B5A1-2CD9F413253B} = {763AD408-7016-4D00-B5A1-2CD9F413253B}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WServicio", "WServicio\WServicio.csproj", "{763AD408-7016-4D00-B5A1-2CD9F413253B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +40,14 @@ Global
 		{FEF7862F-748D-40E1-A664-88EF490A8319}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEF7862F-748D-40E1-A664-88EF490A8319}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEF7862F-748D-40E1-A664-88EF490A8319}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFDF70D5-18AB-4BC2-9767-071A4CFD401C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFDF70D5-18AB-4BC2-9767-071A4CFD401C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFDF70D5-18AB-4BC2-9767-071A4CFD401C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFDF70D5-18AB-4BC2-9767-071A4CFD401C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{763AD408-7016-4D00-B5A1-2CD9F413253B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{763AD408-7016-4D00-B5A1-2CD9F413253B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{763AD408-7016-4D00-B5A1-2CD9F413253B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{763AD408-7016-4D00-B5A1-2CD9F413253B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

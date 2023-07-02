@@ -31,11 +31,6 @@ namespace MediKit
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void btnIngresar_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUser.Text;

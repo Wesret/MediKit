@@ -76,12 +76,11 @@ namespace MediKit.BC
                     }
                     else
                     {
-                        return false; // El equipo no existe en la base de datos
+                        return false;
                     }
                 }
                 catch (Exception ex)
                 {
-                    // Manejar la excepción o registrar el error en algún lugar
                     return false;
                 }
             }
@@ -89,12 +88,12 @@ namespace MediKit.BC
 
         public bool Delete()
         {
-            BD.MEDIKITDBEntities bbdd = new BD.MEDIKITDBEntities();
+            BD.MEDIKITDBEntities bd = new BD.MEDIKITDBEntities();
             try
             {
-                BD.Equipos equipo = bbdd.Equipos.First(e => e.Lote == Lote);
-                bbdd.Equipos.Remove(equipo);
-                bbdd.SaveChanges();
+                BD.Equipos equipo = bd.Equipos.First(e => e.Lote == Lote);
+                bd.Equipos.Remove(equipo);
+                bd.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -185,6 +184,22 @@ namespace MediKit.BC
                                         _descripcionMarca = a.Marcas.Nombre
                                     }).ToList();
             return equipo;
+        }
+
+        public List<Equipos> ReadAllXMarca(int marca)
+        {
+            BD.MEDIKITDBEntities bbdd = new BD.MEDIKITDBEntities();
+            try
+            {
+                List<BD.Equipos> listaBD = bbdd.Equipos.Where(e => e.Id == marca).ToList();
+                List<Equipos> listaBC = GenerarListado(listaBD);
+                return listaBC;
+
+            }
+            catch (Exception ex)
+            {
+                return new List<Equipos>();
+            }
         }
 
         public List<Equipos> BuscarProducto(string producto)

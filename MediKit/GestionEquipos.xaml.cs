@@ -56,38 +56,38 @@ namespace MediKit
             cboMarca.SelectedIndex = 0;
 
         }
-
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            //recopilar los datos agregados
-            Equipos equipo = new Equipos()
+            if (string.IsNullOrEmpty(txtProducto.Text) || string.IsNullOrEmpty(txtPrecio.Text) || string.IsNullOrEmpty(txtLote.Text) || string.IsNullOrEmpty(txtCantidad.Text))
             {
-                Producto = txtProducto.Text,
-                Precio = int.Parse(txtPrecio.Text),
-                MarcaID = (int)cboMarca.SelectedValue,
-                Lote = int.Parse(txtLote.Text),
-                Cantidad = int.Parse(txtCantidad.Text)
-
-            };
-
-            if (equipo.Create())
-            {
-                MessageBox.Show("Equipo ingresado con exito", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
-                LimpiarControles();
+                MessageBox.Show("Por favor rellene los campos", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
-                MessageBox.Show("No se pudo ingresar el equipo", "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                //recopilar los datos agregados
+                Equipos equipo = new Equipos()
+                {
+                    Producto = txtProducto.Text,
+                    Precio = int.Parse(txtPrecio.Text),
+                    MarcaID = (int)cboMarca.SelectedValue,
+                    Lote = int.Parse(txtLote.Text),
+                    Cantidad = int.Parse(txtCantidad.Text)
+
+                };
+
+                if (equipo.Create())
+                {
+                    MessageBox.Show("Equipo ingresado con exito", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LimpiarControles();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo ingresar el equipo", "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
             }
-
-
         }
+
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txtLote.Text))
@@ -125,24 +125,32 @@ namespace MediKit
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            Equipos equipo = new Equipos()
+            if (string.IsNullOrEmpty(txtLote.Text))
             {
-                Lote = int.Parse(txtLote.Text)
-            };
+                MessageBox.Show("Por favor ingrese el Nro de Lote", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                LimpiarControles();
+            }
+            else
+            {
+                Equipos equipo = new Equipos()
+                {
+                    Lote = int.Parse(txtLote.Text)
+                };
 
-            if (MessageBox.Show("¿Está seguro/a de eliminar el equipo?",
-                    "Borrar Equipo",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                if (equipo.Delete())
+                if (MessageBox.Show("¿Está seguro/a de eliminar el equipo?",
+                        "Borrar Equipo",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    MessageBox.Show("Equipo eliminado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
-                    LimpiarControles();
-                }
-                else
-                {
-                    MessageBox.Show("El equipo no pudo ser eliminado", "Atención", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    if (equipo.Delete())
+                    {
+                        MessageBox.Show("Equipo eliminado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                        LimpiarControles();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El equipo no pudo ser eliminado", "Atención", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
                 }
             }
 
